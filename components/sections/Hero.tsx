@@ -8,7 +8,6 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRef } from "react";
 import { Magnetic } from "@/components/Magnetic";
-import { ClientOnly } from "@/components/ClientOnly";
 import { heroProgress } from "@/lib/scroll-progress";
 import { bari, whatsappLink, whatsappMessages } from "@/lib/tokens";
 import gardenNight from "@/public/assets/area-externa4-1920w.avif";
@@ -133,14 +132,10 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-ink/65 via-transparent to-transparent" />
         <div className="hero-tint pointer-events-none absolute inset-0 bg-material opacity-0" />
 
-        <ClientOnly>
-          <HeroScene petalCount={56} />
-        </ClientOnly>
+        <HeroScene petalCount={56} />
 
         {/* Xícara 3D — lado direito, desktop only */}
-        <ClientOnly>
-          <CupWrapper />
-        </ClientOnly>
+        <CupWrapper />
 
         <div className="hero-content absolute inset-0 z-10 flex flex-col justify-end px-6 pt-28 pb-24 md:px-12 md:pb-16">
           <div className="max-w-6xl">
