@@ -31,7 +31,9 @@ export function Hero() {
   useGSAP(
     () => {
       if (!sectionRef.current) return;
-      gsap.registerPlugin(ScrollTrigger, SplitText);
+      if (typeof window !== "undefined") {
+        gsap.registerPlugin(ScrollTrigger, SplitText);
+      }
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -67,7 +69,9 @@ export function Hero() {
   useGSAP(
     () => {
       if (!sectionRef.current || !titleRef.current) return;
-      gsap.registerPlugin(SplitText);
+      if (typeof window !== "undefined") {
+        gsap.registerPlugin(SplitText);
+      }
 
       const split = new SplitText(titleRef.current, {
         type: "lines,words",
