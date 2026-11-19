@@ -1,0 +1,20 @@
+Olá! Tudo bem? Sou desenvolvedor e estou apresentando um conceito de
+site para a Bari Caffè — inspirado na identidade visual da casa e nas
+fotos reais do salão e dos produtos.
+
+O conceito traz:
+• Hero 3D com um jato de chocolate que desce enquanto a pessoa roda a
+  página (scroll-driven)
+• Narrativa em 12 frames: entrada, título, pétalas, para,Menu, detalhes,
+  sazonalidade, prova social, oferta, informação e fecho
+• Um único site leve (menos de 1MB), 60fps, compatível com celular
+
+Demo ao vivo: https://bari-caffe-conceito.vercel.app
+
+Se quiser, conversamos sobre como transformar isso no site oficial da
+Bari Caffè — com as fotos, cardápio e horários de vocês.
+
+Abs,
+
+[seu nome]
+Desenvolvedor de sites 3D e motion

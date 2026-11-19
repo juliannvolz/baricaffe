@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-11-19T17:50:16.396Z",
+  "config": {
+    "widths": [1920, 1280, 800, 400],
+    "formats": ["avif", "webp"],
+    "quality": {
+      "avif": 55,
+      "webp": 75
+    },
+    "blurWidth": 20,
+    "upscaleFactor": 1
+  },
+  "images": {
+    "area-interna4": {
+      "src": "..\\demo\\bari\\raw\\facebook\\area-interna4.jpg",
+      "width": 3024,
+      "height": 4032,
+      "variants": {
+        "avif": {
+          "400": {
+            "file": "area-interna4-400w.avif",
+            "width": 400,
+            "height": 533,
+            "bytes": 33194
+          },
+          "800": {
+            "file": "area-interna4-800w.avif",
+            "width": 800,
+            "height": 1067,
+            "bytes": 138113
+          },
+          "1280": {
+            "file": "area-interna4-1280w.avif",
+            "width": 1280,
+            "height": 1707,
+            "bytes": 372527
+          },
+          "1920": {
+            "file": "area-interna4-1920w.avif",
+            "width": 1920,
+            "height": 2560,
+            "bytes": 712885
+          }
+        },
+        "webp": {
+          "400": {
+            "file": "area-interna4-400w.webp",
+            "width": 400,
+            "height": 533,
+            "bytes": 24410
+          },
+          "800": {
+            "file": "area-interna4-800w.webp",
+            "width": 800,
+            "height": 1067,
+            "bytes": 86184
+          },
+          "1280": {
+            "file": "area-interna4-1280w.webp",
+            "width": 1280,
+            "height": 1707,
+            "bytes": 229006
+          },
+          "1920": {
+            "file": "area-interna4-1920w.webp",
+            "width": 1920,
+            "height": 2560,
+            "bytes": 475948
+          }
+        }
+      },
+      "blurDataUrl": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAUQBQAAD//gAQTGF2YzYyLjI4LjEwMQD/2wBDAAgKCgsKCw0NDQ0NDRAPEBAQEBAQEBAQEBASEhIVFRUSEhIQEBISFBQVFRcXFxUVFRUXFxkZGR4eHBwjIyQrKzP/xAB8AAADAQEBAAAAAAAAAAAAAAAEBgUCAwEBAQEBAQEAAAAAAAAAAAAAAAIEAQMFEAABAwMCAwYHAQEAAAAAAAABAgMEEQASITETI1EFYRSSoSKD0UFTcdJSMhURAAEDAwMFAQAAAAAAAAAAAAERAAISQSFhE5EDMcGScUL/wAARCAAbABQDASIAAhEAAxEA/9oADAMBAAIRAxEAPwA4RF4BVNK0rfq4q2wKpO15jz3Ho5Sia4FhYJBxwIxAJHL3yNLoSXJoWB4pTfLQfcW+4GnK9LnNOr92CqhN5DhGmSO0WI7im1HUb0BND0NPrY//AGI3f5VfKx5DEcPu8WqllxZUSF6kk66AXx4ML+fRyyge0dU9tv2e4C4cdtTT5luPtlVFZ8NlNDjRNNVa6qNSaW2sdoty2kxFsR8G2ClGJzINRqFKSFCv5tceQkR3lge7FevxDYHY6j4rc/4VuSenWzVIBQcXXw+YoOJKZfki33LrrjSUqIbeGNSeYnJWpruCKjpfPgTPvNeQ/tdle94ufcLaanl//9k=",
+      "baseName": "area-interna4"
+    }
+  }
+}

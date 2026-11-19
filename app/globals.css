@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ground: oklch(0.97 0.015 20);
+  --color-ink: oklch(0.25 0.06 30);
+  --color-accent: oklch(0.82 0.11 5);
+  --color-material: oklch(0.35 0.08 40);
+  --color-blush: oklch(0.9 0.035 10);
+  --color-gold: oklch(0.712 0.131 83.7);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+
+  --ease-out-auth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout-auth: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --duration-micro: 180ms;
+  --duration-base: 420ms;
+  --duration-cinematic: 900ms;
+}
+
+html {
+  background: var(--color-ground);
+  color: var(--color-ink);
+}
+
+/* Grain global — materialidade do papel, 1 camada fixa */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Gold utilities — ~5% da página: numeração, estrelas, filetes, tags */
+.gold-border {
+  border: 1px solid var(--color-gold);
+}
+
+.gold-border-hover:hover {
+  border-color: var(--color-gold);
+  box-shadow:
+    0 0 0 1px var(--color-gold),
+    0 8px 32px var(--color-gold) / 0.15;
+}
+
+.gold-focus:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Marquee de uma linha — usa metade do track duplicado */
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.marquee-track {
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+
+.cursor-spin {
+  animation: spin 8s linear infinite;
+  transform-origin: center;
+}
+
+/* Ripple (ondulação) no click — Material Design */
+@keyframes ripple {
+  from {
+    transform: scale(0);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 600ms ease-out forwards;
+}
+
+/* FAQ sem depender de JS */
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] .faq-plus {
+  transform: rotate(45deg);
+}
+
+/* Pétalas caindo — AmbientPetals */
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(var(--rot, 0deg));
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift, 0), 110vh, 0) rotate(calc(var(--rot, 0deg) + 360deg));
+    opacity: 0;
+  }
+}
+
+.ambient-petal {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  will-change: transform, opacity;
+  animation: petal-fall linear infinite;
+  color: var(--color-accent);
+  filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.1));
+}
+
+/* Cup glint — brilho sutil da xícara no Close */
+@keyframes cup-glint {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1) rotate(-15deg);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.15) rotate(-10deg);
+  }
+}
+
+.cup-glint {
+  position: absolute;
+  bottom: 8%;
+  right: 6%;
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(ellipse at 30% 30%, var(--color-gold) / 0.35, transparent 70%);
+  filter: blur(12px);
+  animation: cup-glint 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Reduced motion — desabilita animações decorativas */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-petal,
+  .marquee-track,
+  .cup-glint {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-word,
+  .hero-line {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
