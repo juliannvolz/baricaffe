@@ -72,7 +72,7 @@ export default function HeroScene({ petalCount }: { petalCount: number }) {
       ? [1, 1.25]
       : [1, 1.5];
 
-  // Server-side placeholder (empty div, same dimensions)
+  // Server-side placeholder: static image matching the 3D scene dimensions
   if (!mounted) {
     return (
       <div
@@ -80,7 +80,15 @@ export default function HeroScene({ petalCount }: { petalCount: number }) {
         className="pointer-events-none absolute inset-0"
         aria-hidden="true"
         suppressHydrationWarning
-      />
+      >
+        <img
+          src="/images/hero-petals-placeholder.webp"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
     );
   }
 
