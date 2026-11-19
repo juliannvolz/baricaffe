@@ -4,7 +4,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRef } from "react";
 import { Magnetic } from "@/components/Magnetic";
@@ -12,12 +11,8 @@ import { heroProgress } from "@/lib/scroll-progress";
 import { bari, whatsappLink, whatsappMessages } from "@/lib/tokens";
 import gardenNight from "@/public/assets/area-externa4-1920w.avif";
 import chocolateGlass from "@/public/assets/taça-doce-bari-1920w.avif";
-
-const HeroScene = dynamic(() => import("@/components/HeroScene"), {
-  ssr: false,
-});
-
-const CupWrapper = dynamic(() => import("@/components/three/CupScene").then((mod) => mod.default), { ssr: false });
+import HeroScene from "@/components/HeroScene";
+import CupWrapper from "@/components/three/CupScene";
 
 /**
  * Herói: produto real em duas camadas (jardim ao pôr do sol -> chocolate),

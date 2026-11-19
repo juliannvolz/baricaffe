@@ -52,3 +52,5 @@ tools/out/
 # Backup
 *.backup
 .backup/
+.vercel
+.env*
