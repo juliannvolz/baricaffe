@@ -4,8 +4,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
-
 /**
  * Configuração de reveal para um elemento/grupo
  */
@@ -41,6 +39,9 @@ export function createSectionReveals(
   configs: RevealConfig[],
   reducedMotion = false,
 ): ScrollTrigger[] {
+  if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+  }
   const triggers: ScrollTrigger[] = [];
 
   configs.forEach((cfg, _i) => {
@@ -94,6 +95,9 @@ export function createRevealTimeline(
   }>,
   reducedMotion = false,
 ): gsap.core.Timeline {
+  if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+  }
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: sectionEl,
@@ -139,6 +143,7 @@ export function useReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReduced(mq.matches);
     const handler = (e: MediaQueryListEvent) => setReduced(e.matches);

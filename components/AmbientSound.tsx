@@ -112,7 +112,9 @@ export function AmbientSound() {
       const g = nodesRef.current?.gain;
       if (g && ctxRef.current) {
         g.gain.linearRampToValueAtTime(0, ctxRef.current.currentTime + 0.9);
-        window.setTimeout(() => void ctxRef.current?.suspend(), 950);
+        if (typeof window !== "undefined") {
+          window.setTimeout(() => void ctxRef.current?.suspend(), 950);
+        }
       }
       setOn(false);
       return;

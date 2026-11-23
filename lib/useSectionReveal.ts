@@ -1,11 +1,8 @@
 "use client";
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import { createSectionReveals, useReducedMotion } from "./reveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Hook para reveals de seção baseados em ScrollTrigger.

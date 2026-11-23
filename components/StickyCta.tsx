@@ -48,6 +48,8 @@ export function StickyCta() {
   const frameRef = useRef(0);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
     const measure = () => {
       frameRef.current = 0;
       const scrollY = window.scrollY;
