@@ -14,3 +14,11 @@ export const AmbientPetals = dynamic(
   () => import("@/components/AmbientPetals").then((mod) => mod.AmbientPetals),
   { ssr: false },
 );
+export const HeroScene = dynamic(
+  () => import("@/components/HeroScene").then((mod) => mod.default),
+  { ssr: false },
+);
+export const CupWrapper = dynamic(
+  () => import("@/components/three/CupScene").then((mod) => mod.default),
+  { ssr: false },
+);
