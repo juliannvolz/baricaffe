@@ -182,21 +182,21 @@ details[open] .faq-plus {
 
 /* Reduced motion — desabilita animações decorativas */
 @media (prefers-reduced-motion: reduce) {
-  .ambient-petal,
-  .marquee-track,
-  .cup-glint {
-    animation: none !important;
-    opacity: 0 !important;
+  html .ambient-petal,
+  html .marquee-track,
+  html .cup-glint {
+    animation: none;
+    opacity: 0;
   }
-  [data-reveal] {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
+  html [data-reveal] {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
   }
-  .hero-word,
-  .hero-line {
-    opacity: 1 !important;
-    transform: none !important;
+  html .hero-word,
+  html .hero-line {
+    opacity: 1;
+    transform: none;
   }
 }

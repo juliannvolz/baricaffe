@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { bari } from "@/lib/tokens";
 import { useFadeReveal } from "@/lib/useSectionReveal";
-import interior from "@/public/assets/area-interna4-1920w.avif";
+import interior from "@/public/assets/area-interna4-1920w.webp";
 
 /**
  * O lugar é parte do pedido: full-bleed com parallax leve e overprint.

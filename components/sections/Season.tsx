@@ -5,7 +5,7 @@ import { Magnetic } from "@/components/Magnetic";
 import { timeline } from "@/lib/content";
 import { whatsappLink, whatsappMessages } from "@/lib/tokens";
 import { useFadeReveal } from "@/lib/useSectionReveal";
-import fondue from "@/public/assets/ig-fondue-cover-800w.avif";
+import fondue from "@/public/assets/ig-fondue-cover-800w.webp";
 
 /**
  * O ritmo do dia: brunch, café da tarde, fondue e fechamento.

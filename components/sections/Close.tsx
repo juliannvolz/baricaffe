@@ -5,7 +5,7 @@ import { AmbientPetals } from "@/components/AmbientPetals";
 import { Magnetic } from "@/components/Magnetic";
 import { bari, whatsappLink, whatsappMessages } from "@/lib/tokens";
 import { useFadeReveal } from "@/lib/useSectionReveal";
-import garden from "@/public/assets/area-externa2-1920w.avif";
+import garden from "@/public/assets/area-externa2-1920w.webp";
 
 /**
  * Fechamento híbrido: foto real + atmosfera animada (pétalas + brilho xícara).

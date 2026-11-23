@@ -16,7 +16,7 @@ type CursorState = "default" | "hover-link" | "hover-image" | "dragging";
  * Pointer-events: none, z-index: 40, mix-blend-mode: difference (opcional)
  */
 export function BrandCursor() {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === "undefined") return null;
 
   const ref = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);

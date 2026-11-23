@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
  * Renderiza apenas no client; no SSR retorna null.
  */
 export function AmbientPetals() {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === "undefined") return null;
 
   const mountedRef = useRef(false);
 

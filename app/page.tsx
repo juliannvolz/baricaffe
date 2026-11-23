@@ -1,5 +1,5 @@
-import dynamic from "next/dynamic";
 import { AmbientSound } from "@/components/AmbientSound";
+import { AmbientPetals, BrandCursor, SignatureMarquee } from "@/components/ClientOnlyComponents";
 import { ScrollRefresh } from "@/components/ScrollRefresh";
 import { SiteNav } from "@/components/SiteNav";
 import { StickyCta } from "@/components/StickyCta";
@@ -15,8 +15,6 @@ import { Proof } from "@/components/sections/Proof";
 import { Season } from "@/components/sections/Season";
 import { Signature } from "@/components/sections/Signature";
 import { faqs } from "@/lib/content";
-
-import { BrandCursor, SignatureMarquee, AmbientPetals } from "@/components/ClientOnlyComponents";
 
 const faqJsonLd = {
   "@context": "https://schema.org",

@@ -6,13 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Image from "next/image";
 import { useRef } from "react";
+import HeroScene from "@/components/HeroScene";
 import { Magnetic } from "@/components/Magnetic";
+import CupWrapper from "@/components/three/CupScene";
 import { heroProgress } from "@/lib/scroll-progress";
 import { bari, whatsappLink, whatsappMessages } from "@/lib/tokens";
-import gardenNight from "@/public/assets/area-externa4-1920w.avif";
-import chocolateGlass from "@/public/assets/taça-doce-bari-1920w.avif";
-import HeroScene from "@/components/HeroScene";
-import CupWrapper from "@/components/three/CupScene";
+import gardenNight from "@/public/assets/area-externa4-1920w.webp";
+import chocolateGlass from "@/public/assets/taça-doce-bari-1920w.webp";
 
 /**
  * Herói: produto real em duas camadas (jardim ao pôr do sol -> chocolate),

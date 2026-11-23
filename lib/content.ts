@@ -1,13 +1,13 @@
 import type { StaticImageData } from "next/image";
 import { bari } from "@/lib/tokens";
-import basket from "@/public/assets/cesta1-1280w.avif";
-import drinks from "@/public/assets/drinks-bari-1920w.avif";
-import cream from "@/public/assets/goomer-2-800w.avif";
-import tapioca from "@/public/assets/goomer-3-800w.avif";
-import ninho from "@/public/assets/goomer-5-800w.avif";
-import cake from "@/public/assets/goomer-6-800w.avif";
-import croissant from "@/public/assets/ig-csogzkou-2-1280w.avif";
-import fondue from "@/public/assets/ig-fondue-cover-800w.avif";
+import basket from "@/public/assets/cesta1-1280w.webp";
+import drinks from "@/public/assets/drinks-bari-1920w.webp";
+import cream from "@/public/assets/goomer-2-800w.webp";
+import tapioca from "@/public/assets/goomer-3-800w.webp";
+import ninho from "@/public/assets/goomer-5-800w.webp";
+import cake from "@/public/assets/goomer-6-800w.webp";
+import croissant from "@/public/assets/ig-csogzkou-2-1280w.webp";
+import fondue from "@/public/assets/ig-fondue-cover-800w.webp";
 
 export type MenuItem = {
   name: string;

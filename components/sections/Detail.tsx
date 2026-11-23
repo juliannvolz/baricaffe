@@ -7,8 +7,8 @@ import Image from "next/image";
 import { Magnetic } from "@/components/Magnetic";
 import { whatsappLink, whatsappMessages } from "@/lib/tokens";
 import { useFadeReveal } from "@/lib/useSectionReveal";
-import sweetSavory from "@/public/assets/doce-salgado-1280w.avif";
-import giftBox from "@/public/assets/presente1-1280w.avif";
+import sweetSavory from "@/public/assets/doce-salgado-1280w.webp";
+import giftBox from "@/public/assets/presente1-1280w.webp";
 
 /**
  * O detalhe que não aparece no cardápio: flor, fita e recado.

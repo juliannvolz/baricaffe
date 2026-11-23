@@ -1,13 +1,12 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import gsap from "gsap";
 import { Observer } from "gsap/Observer";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { heroProgress } from "@/lib/scroll-progress";
 
 gsap.registerPlugin(ScrollTrigger, Observer);
 
@@ -42,235 +41,17 @@ function createHandleGeometry(): THREE.TubeGeometry {
   return new THREE.TubeGeometry(curve, 32, 0.08, 8, false);
 }
 
-function createCreamGeometry(): { base: THREE.CylinderGeometry; top: THREE.SphereGeometry } {
+function _createCreamGeometry(): { base: THREE.CylinderGeometry; top: THREE.SphereGeometry } {
   const base = new THREE.CylinderGeometry(0.94, 0.94, 0.15, 32, 1, true);
   const top = new THREE.SphereGeometry(0.98, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2);
   return { base, top };
-}
-
-function CupModel() {
-  const cupRef = useRef<THREE.Group>(null);
-  const handleRef = useRef<THREE.Mesh>(null);
-  const creamRef = useRef<THREE.Group>(null);
-  const dessertsRef = useRef<THREE.Group>(null);
-  const chocolateDripRef = useRef<THREE.Mesh>(null);
-
-  const ceramicMaterial = useRef<THREE.MeshPhysicalMaterial>(null);
-  const chocolateMaterial = useRef<THREE.MeshPhysicalMaterial>(null);
-  const creamMaterial = useRef<THREE.MeshPhysicalMaterial>(null);
-  const dessertMaterial = useRef<THREE.MeshPhysicalMaterial>(null);
-
-  useEffect(() => {
-    ceramicMaterial.current = new THREE.MeshPhysicalMaterial({
-      color: 0xf5c6d6,
-      metalness: 0.0,
-      roughness: 0.15,
-      clearcoat: 0.8,
-      clearcoatRoughness: 0.1,
-      ior: 1.5,
-    });
-    chocolateMaterial.current = new THREE.MeshPhysicalMaterial({
-      color: 0x3d2314,
-      metalness: 0.0,
-      roughness: 0.3,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.05,
-    });
-    creamMaterial.current = new THREE.MeshPhysicalMaterial({
-      color: 0xfff8f0,
-      metalness: 0.0,
-      roughness: 0.6,
-      transmission: 0.1,
-      thickness: 0.8,
-      transparent: true,
-      opacity: 0.95,
-    });
-    dessertMaterial.current = new THREE.MeshPhysicalMaterial({
-      color: 0xe84d60,
-      metalness: 0.0,
-      roughness: 0.4,
-    });
-  }, []);
-
-  useFrame((state) => {
-    if (chocolateDripRef.current) {
-      const time = state.clock.getElapsedTime();
-      chocolateDripRef.current.scale.y = 1 + Math.sin(time * 2) * 0.05;
-      chocolateDripRef.current.rotation.z = Math.sin(time * 1.5) * 0.02;
-    }
-    if (dessertsRef.current) {
-      dessertsRef.current.rotation.y += state.clock.getDelta() * 0.15;
-    }
-    if (creamRef.current) {
-      creamRef.current.children.forEach((child) => {
-        if (child instanceof THREE.Mesh && child.material instanceof THREE.MeshPhysicalMaterial) {
-          child.material.opacity = 0.95 + Math.sin(state.clock.getElapsedTime() * 1.2) * 0.03;
-        }
-      });
-    }
-  });
-
-  const cupGeo = createCupProfile();
-  const handleGeo = createHandleGeometry();
-  const { base: creamBaseGeo, top: creamTopGeo } = createCreamGeometry();
-
-  const dripGeo = new THREE.PlaneGeometry(2.2, 0.15, 16, 1);
-  const posAttr = dripGeo.getAttribute("position");
-  if (posAttr) {
-    for (let i = 0; i < posAttr.count; i++) {
-      const x = posAttr.getX(i);
-      if (Math.abs(x) > 1.0) {
-        posAttr.setY(i, posAttr.getY(i) + Math.sin(x * 8) * 0.02);
-      }
-    }
-    dripGeo.computeVertexNormals();
-  }
-
-  return (
-    <group ref={cupRef} position={[0, -0.3, 0]} scale={1.8}>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -1.1, 0]} receiveShadow>
-        <circleGeometry args={[1.5, 64]} />
-        <meshBasicMaterial color={0x000000} transparent opacity={0.15} depthWrite={false} />
-      </mesh>
-
-      <mesh geometry={cupGeo} ref={cupRef} castShadow receiveShadow>
-        <meshPhysicalMaterial
-          color={0xf5c6d6}
-          metalness={0.0}
-          roughness={0.15}
-          clearcoat={0.8}
-          clearcoatRoughness={0.1}
-          ior={1.5}
-        />
-      </mesh>
-
-      <mesh geometry={handleGeo} ref={handleRef} castShadow receiveShadow>
-        <meshPhysicalMaterial
-          color={0xf5c6d6}
-          metalness={0.0}
-          roughness={0.15}
-          clearcoat={0.8}
-          clearcoatRoughness={0.1}
-        />
-      </mesh>
-
-      <mesh
-        ref={chocolateDripRef}
-        geometry={dripGeo}
-        position={[0, 3.0, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        castShadow
-      >
-        <meshPhysicalMaterial
-          color={0x3d2314}
-          metalness={0.0}
-          roughness={0.3}
-          clearcoat={1.0}
-          clearcoatRoughness={0.05}
-          side={THREE.DoubleSide}
-          transparent
-          alphaTest={0.1}
-        />
-      </mesh>
-
-      <group ref={creamRef} position={[0, 3.07, 0]}>
-        <mesh geometry={creamBaseGeo} castShadow receiveShadow>
-          <meshPhysicalMaterial
-            color={0xfff8f0}
-            metalness={0.0}
-            roughness={0.6}
-            transmission={0.1}
-            thickness={0.8}
-            transparent
-            opacity={0.95}
-          />
-        </mesh>
-        <mesh geometry={creamTopGeo} castShadow receiveShadow>
-          <meshPhysicalMaterial
-            color={0xfff8f0}
-            metalness={0.0}
-            roughness={0.6}
-            transmission={0.1}
-            thickness={0.8}
-            transparent
-            opacity={0.95}
-          />
-        </mesh>
-      </group>
-
-      <group ref={dessertsRef} position={[0, 3.25, 0]}>
-        <mesh
-          geometry={new THREE.ConeGeometry(0.12, 0.25, 16)}
-          position={[-0.35, 0.15, 0.3]}
-          rotation={[-0.2, 0, 0.1]}
-          castShadow
-        >
-          <meshPhysicalMaterial color={0xe84d60} metalness={0.0} roughness={0.4} />
-        </mesh>
-        <mesh
-          geometry={new THREE.SphereGeometry(0.1, 16, 16)}
-          position={[0.4, 0.1, -0.25]}
-          castShadow
-        >
-          <meshPhysicalMaterial
-            color={0x3d2314}
-            metalness={0.0}
-            roughness={0.3}
-            clearcoat={1.0}
-            clearcoatRoughness={0.05}
-          />
-        </mesh>
-        <mesh
-          geometry={new THREE.ConeGeometry(0.1, 0.22, 16)}
-          position={[0.15, 0.18, -0.4]}
-          rotation={[0.15, 0, -0.1]}
-          castShadow
-        >
-          <meshPhysicalMaterial color={0xe84d60} metalness={0.0} roughness={0.4} />
-        </mesh>
-        <mesh
-          geometry={new THREE.SphereGeometry(0.09, 16, 16)}
-          position={[-0.4, 0.1, -0.15]}
-          castShadow
-        >
-          <meshPhysicalMaterial
-            color={0x3d2314}
-            metalness={0.0}
-            roughness={0.3}
-            clearcoat={1.0}
-            clearcoatRoughness={0.05}
-          />
-        </mesh>
-        <mesh
-          geometry={new THREE.ConeGeometry(0.08, 0.18, 12)}
-          position={[0.45, 0.12, 0.35]}
-          rotation={[-0.1, 0, 0.05]}
-          castShadow
-        >
-          <meshPhysicalMaterial color={0xe84d60} metalness={0.0} roughness={0.4} />
-        </mesh>
-      </group>
-
-      <mesh position={[0, 1.8, 1.08]} scale={0.6}>
-        <planeGeometry args={[1, 0.4]} />
-        <meshBasicMaterial
-          color={0xc99a2e}
-          transparent
-          opacity={0.95}
-          depthWrite={false}
-          alphaTest={0.1}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-    </group>
-  );
 }
 
 function CupScene() {
   const cupRef = useRef<THREE.Group>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [_reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -335,12 +116,12 @@ function CupScene() {
           delay: 0.6,
         });
         gsap.to(cup.rotation, {
-          y: "+=0.8" as any,
+          y: "+=0.8",
           ease: "none",
           scrollTrigger: { trigger: "#top", start: "top top", end: "bottom bottom", scrub: 1 },
         });
         gsap.to(cup.position, {
-          y: "+=0.12" as any,
+          y: "+=0.12",
           yoyo: true,
           repeat: -1,
           ease: "sine.inOut",
@@ -351,8 +132,8 @@ function CupScene() {
           Observer.create({
             target: window,
             type: "pointer",
-            onMove: (self: any) => {
-              if (!cupRef.current) return;
+            onMove: (self: { x?: number; y?: number }) => {
+              if (!cupRef.current || self.x === undefined || self.y === undefined) return;
               gsap.to(cup.rotation, {
                 x: self.y * 0.12,
                 y: self.x * 0.12 + cup.rotation.y,

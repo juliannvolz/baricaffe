@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Magnetic } from "@/components/Magnetic";
 import { bari, whatsappLink, whatsappMessages } from "@/lib/tokens";
 import { useFadeReveal } from "@/lib/useSectionReveal";
-import garden from "@/public/assets/area-externa3-1920w.avif";
+import garden from "@/public/assets/area-externa3-1920w.webp";
 
 /**
  * Objeção final: onde fica, que horas abre, como chegar e como pedir.

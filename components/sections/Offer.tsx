@@ -5,7 +5,7 @@ import { Magnetic } from "@/components/Magnetic";
 import { gifts } from "@/lib/content";
 import { whatsappLink, whatsappMessages } from "@/lib/tokens";
 import { useFadeReveal } from "@/lib/useSectionReveal";
-import basket from "@/public/assets/cesta1-1280w.avif";
+import basket from "@/public/assets/cesta1-1280w.webp";
 
 /**
  * Presentes e encomendas: a oferta de maior valor percebido da casa.

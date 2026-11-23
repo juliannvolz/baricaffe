@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
  * Pausa no hover, respeita prefers-reduced-motion.
  */
 export function SignatureMarquee() {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === "undefined") return null;
 
   const [mounted, setMounted] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);

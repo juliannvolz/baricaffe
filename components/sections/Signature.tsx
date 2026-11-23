@@ -7,10 +7,10 @@ import Image from "next/image";
 import { useRef } from "react";
 import { Magnetic } from "@/components/Magnetic";
 import { whatsappLink, whatsappMessages } from "@/lib/tokens";
-import chocolate from "@/public/assets/doce-bari-1920w.avif";
-import croissant from "@/public/assets/ig-csogzkou-2-1280w.avif";
-import chocolateGlass from "@/public/assets/taça-doce-bari-1920w.avif";
-import chocolateCup from "@/public/assets/xicara-bari-1920w.avif";
+import chocolate from "@/public/assets/doce-bari-1920w.webp";
+import croissant from "@/public/assets/ig-csogzkou-2-1280w.webp";
+import chocolateGlass from "@/public/assets/taça-doce-bari-1920w.webp";
+import chocolateCup from "@/public/assets/xicara-bari-1920w.webp";
 
 const ways = [
   {
