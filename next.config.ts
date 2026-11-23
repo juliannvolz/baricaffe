@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Force rebuild: 2026-11-23
+  // Force rebuild: 2026-11-23-1150
 };
 
 export default nextConfig;
