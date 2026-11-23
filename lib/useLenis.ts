@@ -12,6 +12,7 @@ import { useEffect } from "react";
 export function useLenis(enabled = true) {
   useEffect(() => {
     if (!enabled) return;
+    if (typeof window === "undefined") return;
 
     gsap.registerPlugin(ScrollTrigger);
 

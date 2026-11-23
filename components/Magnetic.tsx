@@ -21,33 +21,37 @@ export function Magnetic({
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+  useGSAP(
+    () => {
+      const el = ref.current;
+      if (!el) return;
+      if (typeof window === "undefined") return;
+      if (!window.matchMedia("(pointer: fine)").matches) return;
 
-    const strength = 10;
-    const onMove = (e: MouseEvent) => {
-      const r = el.getBoundingClientRect();
-      const dx = e.clientX - (r.left + r.width / 2);
-      const dy = e.clientY - (r.top + r.height / 2);
-      gsap.to(el, {
-        x: (dx / r.width) * strength * 2,
-        y: (dy / r.height) * strength * 2,
-        duration: 0.4,
-        ease: "power3.out",
-      });
-    };
-    const onLeave = () => {
-      gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" });
-    };
-    el.addEventListener("mousemove", onMove);
-    el.addEventListener("mouseleave", onLeave);
-    return () => {
-      el.removeEventListener("mousemove", onMove);
-      el.removeEventListener("mouseleave", onLeave);
-    };
-  }, []);
+      const strength = 10;
+      const onMove = (e: MouseEvent) => {
+        const r = el.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        gsap.to(el, {
+          x: (dx / r.width) * strength * 2,
+          y: (dy / r.height) * strength * 2,
+          duration: 0.4,
+          ease: "power3.out",
+        });
+      };
+      const onLeave = () => {
+        gsap.to(el, { x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.4)" });
+      };
+      el.addEventListener("mousemove", onMove);
+      el.addEventListener("mouseleave", onLeave);
+      return () => {
+        el.removeEventListener("mousemove", onMove);
+        el.removeEventListener("mouseleave", onLeave);
+      };
+    },
+    { scope: ref },
+  );
 
   return (
     <Ripple color={rippleColor}>
